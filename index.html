@@ -37,17 +37,29 @@ body{
 
 /* Hero */
 header.hero{
-  padding:88px 24px 60px;
+  padding:80px 24px 60px;
   position:relative;
   overflow:hidden;
   border-bottom:1px solid var(--line);
 }
 .hero-inner{max-width:1060px;margin:0 auto;position:relative;z-index:2}
-.brandmark{
-  font-weight:700;font-size:19px;letter-spacing:.02em;color:var(--white);margin-bottom:44px;
-  display:flex;align-items:center;gap:10px;
+
+/* Logo lockup */
+.logo{display:flex;align-items:center;gap:11px;margin-bottom:46px}
+.logo svg{width:30px;height:30px;display:block}
+.logo .wm{font-weight:700;font-size:21px;letter-spacing:.005em;color:var(--white)}
+
+/* Hero numination (animated glyph) */
+.hero-glyph{position:absolute;top:64px;right:20px;width:150px;height:150px;z-index:1;pointer-events:none}
+.hero-glyph .hook{
+  stroke-dasharray:1;stroke-dashoffset:1;
+  animation:draw 3.2s ease-in-out infinite alternate;
 }
-.brandmark .sq{width:11px;height:11px;background:var(--teal);border-radius:3px}
+.hero-glyph .dot{transform-origin:center;animation:dotpulse 3.2s ease-in-out infinite alternate}
+@keyframes draw{0%{stroke-dashoffset:1}55%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
+@keyframes dotpulse{0%{opacity:.25}45%{opacity:1}100%{opacity:1}}
+@media(max-width:720px){.hero-glyph{width:96px;height:96px;top:24px;right:14px;opacity:.75}}
+
 .eyebrow{
   font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;
   color:var(--teal);font-weight:600;margin-bottom:22px;
@@ -98,7 +110,7 @@ section.panel.show{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 h2.sec{font-size:clamp(26px,3.4vw,34px);font-weight:700;margin:30px 0 8px;letter-spacing:-.02em}
-p.sub{color:var(--mute);margin:0 0 30px;max-width:640px;font-size:16px;font-weight:400}
+p.sub{color:var(--mute);margin:0 0 30px;max-width:660px;font-size:16px;font-weight:400}
 
 /* Stats */
 .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 12px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
@@ -182,6 +194,14 @@ code{font-family:"Mohr Rounded",monospace;color:var(--yellow);font-weight:500;fo
 .loop-step span{display:block;font-size:11px;color:var(--yellow);font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
 .loop .arrow{color:var(--yellow)}
 
+/* Pillars (source of truth) */
+.pillar{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px 22px;border-top:2px solid var(--teal)}
+.pillar.p2{border-top-color:var(--yellow)}
+.pillar .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.pillar h4{margin:8px 0 6px;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.pillar p{margin:0 0 10px;font-size:13.5px;color:var(--mute)}
+.pillar .items{font-size:12.5px;color:var(--faint);font-weight:500;letter-spacing:.01em}
+
 footer{max-width:1060px;margin:0 auto;padding:34px 24px 70px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
 footer b{color:var(--mute);font-weight:500}
 </style>
@@ -190,19 +210,47 @@ footer b{color:var(--mute);font-weight:500}
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="brandmark"><span class="sq"></span> numi</div>
+    <div class="logo">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="numi">
+        <defs>
+          <linearGradient id="gLogo" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f9ed35"/>
+            <stop offset="52%" stop-color="#7FD15A"/>
+            <stop offset="100%" stop-color="#02a398"/>
+          </linearGradient>
+        </defs>
+        <path d="M45 70 L45 53 Q45 31 65 31 Q85 31 85 53 L85 95" fill="none"
+              stroke="url(#gLogo)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="37" cy="90" r="10.5" fill="url(#gLogo)"/>
+      </svg>
+      <span class="wm">numi</span>
+    </div>
+
+    <svg class="hero-glyph" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="gHero" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f9ed35"/>
+          <stop offset="52%" stop-color="#7FD15A"/>
+          <stop offset="100%" stop-color="#02a398"/>
+        </linearGradient>
+      </defs>
+      <path class="hook" pathLength="1" d="M45 70 L45 53 Q45 31 65 31 Q85 31 85 53 L85 95" fill="none"
+            stroke="url(#gHero)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="dot" cx="37" cy="90" r="10.5" fill="url(#gHero)"/>
+    </svg>
+
     <div class="eyebrow">Inside my Claude setup</div>
     <h1>How I run numi with <span class="grad">Claude</span></h1>
-    <p class="lead">A working map of the assistant I have built: the memory that makes it know me, the skills that do the work, the packs that give it depth, and the tools it plugs into across the business.</p>
+    <p class="lead">A working map of the assistant I have built: the memory that makes it know me, the skills that do the work, the agents that hold the quality line, and the tools it plugs into across the business.</p>
     <div class="tldr">
-      <b>TL;DR</b> I have wired Claude into a numi Personal Operating System. One source of truth feeds a memory layer, ten custom numi skills run the search and content workflows, thirteen skill packs extend it across the business, and it connects live to the tools we already work in. Outcomes first, builder detail underneath each section.
+      <b>TL;DR</b> I have wired Claude into a numi Personal Operating System. One source of truth feeds a memory layer, eleven custom numi skills run the search, content and brand work, thirteen skill packs extend it across the business, a set of agents keep quality and consistency, and it connects live to the tools we already work in. Outcomes first, builder detail underneath each section.
     </div>
     <div class="hero-meta">
-      <span class="chip"><b>10</b> custom numi skills</span>
+      <span class="chip"><b>11</b> custom numi skills</span>
       <span class="chip"><b>13</b> installed skill packs</span>
       <span class="chip"><b>20+</b> connected tools</span>
+      <span class="chip"><b>6</b> working agents</span>
       <span class="chip"><b>1</b> source of truth</span>
-      <span class="chip">Built-in quality gates</span>
     </div>
   </div>
 </header>
@@ -220,18 +268,18 @@ footer b{color:var(--mute);font-weight:500}
   <!-- OVERVIEW -->
   <section class="panel show" id="overview">
     <h2 class="sec">The setup in one screen</h2>
-    <p class="sub">Everything I have built sits in four layers. Each layer makes the one above it smarter. The result is an assistant that sounds like me, follows the numi Way, and gets real work done end to end.</p>
+    <p class="sub">Everything I have built sits in four layers, held together by one operating system. Each layer makes the one above it smarter. The result is an assistant that sounds like me, follows the numi Way, and gets real work done end to end.</p>
 
     <div class="stat-row">
       <div class="stat"><div class="n">4</div><div class="l">Connected layers</div></div>
-      <div class="stat"><div class="n">10</div><div class="l">Custom numi skills</div></div>
+      <div class="stat"><div class="n">11</div><div class="l">Custom numi skills</div></div>
       <div class="stat"><div class="n">13</div><div class="l">Installed skill packs</div></div>
       <div class="stat"><div class="n">20+</div><div class="l">Live tool connections</div></div>
     </div>
 
     <div class="grid g2" style="margin-top:14px">
       <div class="card"><div class="idx">01</div><h3>Memory and identity</h3><p>Claude knows who I am, how numi works, our credentials, the team, and my hard rules. It does not start cold every time. This is the layer that makes the voice sound like me.</p></div>
-      <div class="card"><div class="idx">02</div><h3>Custom numi skills</h3><p>Ten workflows built for our actual jobs: search briefs, candidate packs, LinkedIn content, BD outreach, deal tracking, meeting prep, weekly pipeline, plus two quality gates.</p></div>
+      <div class="card"><div class="idx">02</div><h3>Custom numi skills</h3><p>Eleven workflows built for our actual jobs: search briefs, candidate packs, LinkedIn content, BD outreach, deal tracking, meeting prep, weekly pipeline, brand design, plus two quality gates.</p></div>
       <div class="card"><div class="idx">03</div><h3>Skill packs</h3><p>Thirteen installed packs that extend Claude into brand voice, sales, marketing, data, finance, legal, HR, operations and productivity. Depth on tap when a task needs it.</p></div>
       <div class="card"><div class="idx">04</div><h3>Connected tools</h3><p>Live links into the apps we already run on: Notion, Drive, Gmail, Calendar, Slack, our ATS and finance data, meeting recorders and more. Claude reads and acts where the work lives.</p></div>
     </div>
@@ -245,7 +293,7 @@ footer b{color:var(--mute);font-weight:500}
   <!-- HOW -->
   <section class="panel" id="how">
     <h2 class="sec">How everything links together</h2>
-    <p class="sub">A request flows through the stack. Identity shapes the voice, a skill routes the job, connected tools supply the data and take the action, and a quality gate checks the output before it reaches me.</p>
+    <p class="sub">A request flows through the stack. Identity shapes the voice, a skill routes the job, connected tools supply the data and take the action, and an agent checks the output before it reaches me.</p>
 
     <div class="flow">
       <div class="flow-row">
@@ -253,12 +301,12 @@ footer b{color:var(--mute);font-weight:500}
         <div class="arrow">&rarr;</div>
         <div class="flow-box"><div class="k">Layer 1</div><h4>Memory and identity</h4><p>numi-core facts, my voice, hard rules and confidentiality load automatically.</p></div>
         <div class="arrow">&rarr;</div>
-        <div class="flow-box"><div class="k">Layer 2</div><h4>The right skill fires</h4><p>The matching numi skill or skill pack picks up the job and runs its playbook.</p></div>
+        <div class="flow-box"><div class="k">Layer 2</div><h4>The right skill fires</h4><p>The Conductor routes it to the matching numi skill or skill pack, which runs its playbook.</p></div>
       </div>
       <div class="flow-row">
         <div class="flow-box alt"><div class="k">Layer 3</div><h4>Connected tools</h4><p>Notion, Drive, Gmail, Slack, ATS and finance data are read or updated live.</p></div>
         <div class="arrow">&rarr;</div>
-        <div class="flow-box alt"><div class="k">Layer 4</div><h4>Quality gate</h4><p>Ghostwriter or search-quality eval checks it against the numi standard.</p></div>
+        <div class="flow-box alt"><div class="k">Layer 4</div><h4>Agent quality gate</h4><p>The Reviewer or Ghostwriter eval checks it against the numi standard.</p></div>
         <div class="arrow">&rarr;</div>
         <div class="flow-box alt"><div class="k">Output</div><h4>Delivered to me</h4><p>On brand, on rules, ready to send. Nothing goes out without my sign off.</p></div>
       </div>
@@ -269,8 +317,8 @@ footer b{color:var(--mute);font-weight:500}
       <h3>What actually makes it hang together</h3>
       <ul class="clean">
         <li><b>Single source of truth.</b> A canonical <code>numi-core.md</code> file in my Drive holds the credentials, positioning and facts. Everything downstream reads from it, so the numbers never drift.</li>
-        <li><b>CLAUDE.md routing.</b> A project instruction file acts as the routing table. It tells Claude which context to load and which skill owns which job.</li>
-        <li><b>Memory files.</b> A memory index plus individual fact files persist across sessions: my biography, the team roster, the no em dash rule, project state and the canonical root decision.</li>
+        <li><b>CLAUDE.md routing.</b> A project instruction file acts as the routing table. It tells Claude which context to load and which skill or agent owns which job.</li>
+        <li><b>Memory files.</b> A memory index plus individual fact files persist across sessions: my biography, the team roster, the no em dash rule, the step back and challenge rule, project state and the canonical root decision.</li>
         <li><b>Confidentiality by default.</b> Candidate and client data is anonymised in working drafts. Real names never sit in file names. Sensitive data is flagged before it touches an external tool.</li>
         <li><b>Human in the loop.</b> Nothing is sent, posted or logged without my explicit confirmation. The assistant drafts and checks, I approve.</li>
       </ul>
@@ -279,13 +327,14 @@ footer b{color:var(--mute);font-weight:500}
 
   <!-- SKILLS -->
   <section class="panel" id="skills">
-    <h2 class="sec">The ten skills I built for numi</h2>
-    <p class="sub">Bespoke workflows, not generic prompts. Each one encodes how we actually run search and content, so the output arrives in numi format and numi voice every time.</p>
+    <h2 class="sec">The eleven skills I built for numi</h2>
+    <p class="sub">Bespoke workflows, not generic prompts. Each one encodes how we actually run search, content and brand, so the output arrives in numi format and numi voice every time.</p>
 
     <div class="grid g3">
       <div class="tile"><div class="mono">nW</div><h4>numi Writer</h4><p>Audience-adaptive writing for any numi communication. Adapts one message for a founder, an investor, a CTO or a candidate.</p><span class="tag">Content</span></div>
       <div class="tile"><div class="mono">Li</div><h4>LinkedIn Content Creator</h4><p>Turns a raw idea, a win, a numicon moment or a numi Talks episode into a post in my exact voice.</p><span class="tag">Content</span></div>
       <div class="tile"><div class="mono">BD</div><h4>BD Outreach Sequencer</h4><p>Multi-touch outreach sequences for founders, investors and leaders, personalised and in my voice.</p><span class="tag">Content</span></div>
+      <div class="tile"><div class="mono">Bd</div><h4>Brand Design</h4><p>Produces on-brand numi visuals, carousels, decks and social creative under the numi Creative System.</p><span class="tag">Brand</span></div>
       <div class="tile"><div class="mono">SB</div><h4>Search Brief Processor</h4><p>Converts rough notes, an email or a call into a complete numi search kit ready to activate.</p><span class="tag teal">Search</span></div>
       <div class="tile"><div class="mono">CP</div><h4>Candidate Pack Generator</h4><p>Builds a polished, client-ready candidate pack in Notion format from a CV, profile or call notes.</p><span class="tag teal">Search</span></div>
       <div class="tile"><div class="mono">WP</div><h4>Weekly Pipeline Report</h4><p>Structured Monday view of active searches, BD pipeline, candidate movement, red flags and the week ahead.</p><span class="tag teal">Search</span></div>
@@ -298,7 +347,7 @@ footer b{color:var(--mute);font-weight:500}
     <div class="callout builder">
       <div class="builder-flag"><span class="b"></span> Builder detail</div>
       <h3>The eval loop is the secret</h3>
-      <p>Two of the ten are quality gates, not producers. Every piece of written or search output runs through an eval skill before it reaches me, scored against the voice and the numi standard. This is a reinforcement loop: when I give feedback, the rule gets written back into memory so the next draft is better. That is what keeps quality flat as volume grows.</p>
+      <p>Two of the eleven are quality gates, not producers. Every piece of written or search output runs through an eval before it reaches me, scored against the voice and the numi standard. This is a reinforcement loop: when I give feedback, the rule gets written back into memory so the next draft is better. That is what keeps quality flat as volume grows.</p>
     </div>
   </section>
 
@@ -326,7 +375,7 @@ footer b{color:var(--mute);font-weight:500}
     <div class="callout builder">
       <div class="builder-flag"><span class="b"></span> Builder detail</div>
       <ul class="clean">
-        <li><b>Packs vs custom skills.</b> The thirteen packs are broad, installed expertise. My ten numi skills are narrow and bespoke. The custom skills win when the job is a numi-specific workflow, the packs win when I need general depth.</li>
+        <li><b>Packs vs custom skills.</b> The thirteen packs are broad, installed expertise. My eleven numi skills are narrow and bespoke. The custom skills win when the job is a numi-specific workflow, the packs win when I need general depth.</li>
         <li><b>Document builders too.</b> Alongside these, format skills produce polished Word docs, spreadsheets, presentations and PDFs, so a finished deliverable comes out the other end, not just text.</li>
         <li><b>Composable.</b> Skills stack. A single task can pull brand voice, a data pack and a document builder together in one run.</li>
       </ul>
@@ -340,7 +389,7 @@ footer b{color:var(--mute);font-weight:500}
 
     <div class="grid g4">
       <div class="tile"><div class="mono">No</div><h4>Notion</h4><p>Candidate packs, docs and our knowledge base.</p></div>
-      <div class="tile"><div class="mono">Dr</div><h4>Google Drive</h4><p>The canonical numi OS files and search records.</p></div>
+      <div class="tile"><div class="mono">Dr</div><h4>Google Drive</h4><p>The canonical numi OS files, brand assets and search records.</p></div>
       <div class="tile"><div class="mono">Gm</div><h4>Gmail</h4><p>Draft, search and label threads. Never sends without me.</p></div>
       <div class="tile"><div class="mono">Ca</div><h4>Google Calendar</h4><p>Meetings, availability and scheduling.</p></div>
       <div class="tile"><div class="mono">Sl</div><h4>Slack</h4><p>Read, search, digest and draft across channels.</p></div>
@@ -371,7 +420,7 @@ footer b{color:var(--mute);font-weight:500}
   <!-- OS -->
   <section class="panel" id="os">
     <h2 class="sec">The numi Personal Operating System</h2>
-    <p class="sub">The whole thing is held together by a personal operating system, inspired by Dave Wascha's framework and rebuilt around how numi actually works. This is the layer that turns a set of tools into a system.</p>
+    <p class="sub">The whole thing is held together by a personal operating system, inspired by Dave Wascha's framework and rebuilt around how numi actually works. Tools, skills, agents and rules, all overseen by a Conductor. This is the layer that turns a set of tools into a system.</p>
 
     <div class="grid g3">
       <div class="card"><div class="idx">PURPOSE</div><h3>One brain, always on</h3><p>One place that defines who we are, how we work, and the rules the assistant follows. It removes the need to re-explain numi every session.</p></div>
@@ -379,7 +428,33 @@ footer b{color:var(--mute);font-weight:500}
       <div class="card"><div class="idx">THE LOOP</div><h3>Sharper each time</h3><p>Apply confirmed rules, produce work, take feedback, write the learning back into memory. Every session leaves the system a little sharper.</p></div>
     </div>
 
-    <h2 class="sec" style="margin-top:36px">The learning loop</h2>
+    <h2 class="sec" style="margin-top:38px">The agents</h2>
+    <p class="sub">Distinct roles, each with one job. The Conductor decides who picks up a task. The rest produce, check, protect and maintain, so quality does not depend on me remembering everything.</p>
+
+    <div class="grid g3">
+      <div class="tile"><div class="mono">Co</div><h4>The Conductor</h4><p>Orchestrates the system. Reads the request, loads the right context, and routes the job to the skill or agent that owns it.</p><span class="tag">Orchestrator</span></div>
+      <div class="tile"><div class="mono">Gw</div><h4>The Ghostwriter</h4><p>Drafts content in my voice, from LinkedIn posts to proposals and outreach. My highest-impact role.</p><span class="tag">Producer</span></div>
+      <div class="tile"><div class="mono">Rv</div><h4>The Reviewer</h4><p>Scores drafts and search outputs against the numi standard. Turns my corrections into standing rules.</p><span class="tag teal">Quality</span></div>
+      <div class="tile"><div class="mono">An</div><h4>The Analyst</h4><p>Buys me thinking time. Steps back, pressure-tests the framing and challenges my assumptions before we build.</p><span class="tag teal">Thinking</span></div>
+      <div class="tile"><div class="mono">Az</div><h4>The Anonymiser</h4><p>Strips client and candidate identity for job adverts and shared notes, so sensitive detail never leaks.</p><span class="tag teal">Guardrail</span></div>
+      <div class="tile"><div class="mono">Lb</div><h4>The Librarian</h4><p>Built today. A weekly read-only sweep that checks every file against numi-core and flags any drift in the facts.</p><span class="tag">Maintenance</span></div>
+    </div>
+
+    <h2 class="sec" style="margin-top:38px">One source of truth, three asset pillars</h2>
+    <p class="sub">The OS lives in one canonical root in my Drive, which I own. Underneath it, three pillars keep every asset in exactly one home, so nothing scatters and nothing drifts.</p>
+
+    <div class="grid g3">
+      <div class="pillar"><div class="k">Identity</div><h4>numi Design System</h4><p>How numi looks. The brand system, fonts, guidelines, templates and virtual backgrounds.</p><div class="items">Brand and guidelines · templates and decks · social · virtual backgrounds · numinations</div></div>
+      <div class="pillar p2"><div class="k">Voice</div><h4>Content and writing</h4><p>How numi sounds. The voice, the rules and the Ghostwriter and Reviewer loop behind every word.</p><div class="items">numi voice · brand rules · eval loop</div></div>
+      <div class="pillar"><div class="k">Proof</div><h4>numi Credentials</h4><p>What numi has done and how it proves it. Pitch decks, case studies and testimonials.</p><div class="items">pitch and credentials decks · case studies · testimonials</div></div>
+    </div>
+
+    <div class="callout accent" style="margin-top:14px">
+      <h3>numinations</h3>
+      <p>Our branded animations. The loading mark on this page, the dot that resolves into the numi glyph, is one of them. They live in the Design System pillar alongside the rest of the brand kit, so anything we make stays unmistakably numi.</p>
+    </div>
+
+    <h2 class="sec" style="margin-top:38px">The learning loop</h2>
     <p class="sub">This is what keeps quality rising rather than drifting. Feedback does not evaporate at the end of a chat, it becomes a rule.</p>
 
     <div class="loop">
@@ -387,7 +462,7 @@ footer b{color:var(--mute);font-weight:500}
       <div class="arrow">&rarr;</div>
       <div class="loop-step"><span>Step 2</span>Produce the work</div>
       <div class="arrow">&rarr;</div>
-      <div class="loop-step"><span>Step 3</span>Run the quality gate</div>
+      <div class="loop-step"><span>Step 3</span>Run the agent quality gate</div>
       <div class="arrow">&rarr;</div>
       <div class="loop-step"><span>Step 4</span>I give feedback</div>
       <div class="arrow">&rarr;</div>
@@ -398,9 +473,9 @@ footer b{color:var(--mute);font-weight:500}
       <div class="builder-flag"><span class="b"></span> Builder detail</div>
       <ul class="clean">
         <li><b>Canonical root, locked.</b> My private Drive folder is the single source of truth and I am sole owner. The team works from a synced shared copy, so there is one master and no forks.</li>
-        <li><b>Weekly drift check.</b> A librarian sweep checks the credentials and facts across files against the canonical core, so numbers stay consistent everywhere.</li>
-        <li><b>Ghostwriter and Reviewer.</b> The content producer and its reviewer are separate roles. The producer drafts, the reviewer scores, and the RLHF process turns my corrections into standing rules.</li>
-        <li><b>Hard rules, every session.</b> No em dashes. Lead with a TL;DR. Never send or delete without my confirmation. Direct and concise, answer first. These hold regardless of the task.</li>
+        <li><b>The Librarian, weekly.</b> A read-only sweep checks the credentials and facts across every file against the canonical core, so numbers stay consistent everywhere and drift gets caught early.</li>
+        <li><b>Ghostwriter and Reviewer, separate roles.</b> The producer drafts, the reviewer scores, and the feedback process turns my corrections into standing rules the whole system inherits.</li>
+        <li><b>Hard rules, every session.</b> No em dashes. Lead with a TL;DR. Never send, post or delete without my confirmation. Step back and challenge my assumptions before structural work. Direct and concise, answer first. These hold regardless of the task.</li>
       </ul>
     </div>
 
