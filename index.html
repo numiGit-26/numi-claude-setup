@@ -200,6 +200,38 @@ code{font-family:"Mohr Rounded",monospace;color:var(--yellow);font-weight:500;fo
 
 footer{max-width:1060px;margin:0 auto;padding:34px 24px 70px;color:var(--faint);font-size:13px;border-top:1px solid var(--line)}
 footer b{color:var(--mute);font-weight:500}
+
+/* Glossary / guide */
+.gloss-search{position:relative;max-width:520px;margin:0 0 24px}
+.gloss-search input{
+  width:100%;background:var(--panel);border:1px solid var(--line);border-radius:999px;
+  padding:13px 18px 13px 44px;color:var(--white);font-family:inherit;font-size:15px;outline:none;transition:border-color .16s;
+}
+.gloss-search input::placeholder{color:var(--faint)}
+.gloss-search input:focus{border-color:var(--line-teal)}
+.gloss-search .ic{position:absolute;left:17px;top:50%;transform:translateY(-50%);width:15px;height:15px;border:2px solid var(--faint);border-radius:50%}
+.gloss-search .ic:after{content:"";position:absolute;right:-5px;bottom:-4px;width:7px;height:2px;background:var(--faint);transform:rotate(45deg)}
+.gloss-count{font-size:12.5px;color:var(--faint);margin:0 0 22px;font-weight:500;letter-spacing:.02em}
+.gloss-group-wrap{margin-bottom:14px}
+.gloss-group{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);font-weight:600;margin:24px 0 12px}
+.gloss{border:1px solid var(--line);border-radius:6px;margin-bottom:8px;background:var(--panel);overflow:hidden}
+.gloss:hover{border-color:var(--line-teal)}
+.gloss-q{
+  width:100%;display:flex;align-items:center;gap:14px;background:transparent;border:none;cursor:pointer;
+  padding:15px 18px;text-align:left;font-family:inherit;color:var(--white);
+}
+.gloss-q:hover{background:var(--panel-2)}
+.gloss-t{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.gloss-cat{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-left:auto;white-space:nowrap}
+.gloss-x{width:22px;height:22px;flex:none;display:grid;place-items:center;color:var(--teal);font-size:22px;font-weight:400;line-height:1;transition:transform .18s ease}
+.gloss.open .gloss-x{transform:rotate(45deg)}
+.gloss-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.gloss.open .gloss-a{max-height:900px}
+.gloss-a p{margin:0;padding:0 18px 18px;color:var(--mute);font-size:14.5px;line-height:1.6}
+.gloss-a p b{color:var(--white);font-weight:600}
+.gloss-none{color:var(--mute);font-size:14.5px;padding:8px 2px;display:none}
+.gloss-hide{display:none!important}
+@media(max-width:520px){.gloss-cat{display:none}}
 </style>
 </head>
 <body>
@@ -235,10 +267,10 @@ footer b{color:var(--mute);font-weight:500}
     <h1>How I run numi with <span class="grad">Claude</span></h1>
     <p class="lead">A working map of the assistant I have built: the memory that makes it know me, the skills that do the work, the agents that hold the quality line, and the tools it plugs into across the business.</p>
     <div class="tldr">
-      <b>TL;DR</b> I have wired Claude into a numi Personal Operating System. One source of truth feeds a memory layer, eleven custom numi skills run the search, content and brand work, thirteen skill packs extend it across the business, a set of agents keep quality and consistency, and it connects live to the tools we already work in. Outcomes first, builder detail underneath each section.
+      <b>TL;DR</b> I have wired Claude into a numi Personal Operating System. One source of truth feeds a memory layer, eighteen custom numi skills run the search, content and brand work, thirteen skill packs extend it across the business, a set of agents keep quality and consistency, and it connects live to the tools we already work in. Outcomes first, builder detail underneath each section.
     </div>
     <div class="hero-meta">
-      <span class="chip"><b>11</b> custom numi skills</span>
+      <span class="chip"><b>18</b> custom numi skills</span>
       <span class="chip"><b>13</b> installed skill packs</span>
       <span class="chip"><b>20+</b> connected tools</span>
       <span class="chip"><b>6</b> working agents</span>
@@ -255,6 +287,7 @@ footer b{color:var(--mute);font-weight:500}
     <button data-t="plugins">Skill packs</button>
     <button data-t="tools">Connected tools</button>
     <button data-t="os">The numi OS</button>
+    <button data-t="guide">Guide &amp; glossary</button>
   </nav>
 
   <!-- OVERVIEW -->
@@ -264,14 +297,14 @@ footer b{color:var(--mute);font-weight:500}
 
     <div class="stat-row">
       <div class="stat"><div class="n">4</div><div class="l">Connected layers</div></div>
-      <div class="stat"><div class="n">11</div><div class="l">Custom numi skills</div></div>
+      <div class="stat"><div class="n">18</div><div class="l">Custom numi skills</div></div>
       <div class="stat"><div class="n">13</div><div class="l">Installed skill packs</div></div>
       <div class="stat"><div class="n">20+</div><div class="l">Live tool connections</div></div>
     </div>
 
     <div class="grid g2" style="margin-top:14px">
       <div class="card"><div class="idx">01</div><h3>Memory and identity</h3><p>Claude knows who I am, how numi works, our credentials, the team, and my hard rules. It does not start cold every time. This is the layer that makes the voice sound like me.</p></div>
-      <div class="card"><div class="idx">02</div><h3>Custom numi skills</h3><p>Eleven workflows built for our actual jobs: search briefs, candidate packs, LinkedIn content, BD outreach, deal tracking, meeting prep, weekly pipeline, brand design, plus two quality gates.</p></div>
+      <div class="card"><div class="idx">02</div><h3>Custom numi skills</h3><p>Eighteen workflows built for our actual jobs: search briefs, market maps, candidate packs, comp advice, BD signals and outreach, LinkedIn content, deal tracking, post-placement care, thinking tools, plus two quality gates.</p></div>
       <div class="card"><div class="idx">03</div><h3>Skill packs</h3><p>Thirteen installed packs that extend Claude into brand voice, sales, marketing, data, finance, legal, HR, operations and productivity. Depth on tap when a task needs it.</p></div>
       <div class="card"><div class="idx">04</div><h3>Connected tools</h3><p>Live links into the apps we already run on: Notion, Drive, Gmail, Calendar, Slack, our ATS and finance data, meeting recorders and more. Claude reads and acts where the work lives.</p></div>
     </div>
@@ -319,7 +352,7 @@ footer b{color:var(--mute);font-weight:500}
 
   <!-- SKILLS -->
   <section class="panel" id="skills">
-    <h2 class="sec">The eleven skills I built for numi</h2>
+    <h2 class="sec">The eighteen skills I built for numi</h2>
     <p class="sub">Bespoke workflows, not generic prompts. Each one encodes how we actually run search, content and brand, so the output arrives in numi format and numi voice every time.</p>
 
     <div class="grid g3">
@@ -334,12 +367,19 @@ footer b{color:var(--mute);font-weight:500}
       <div class="tile"><div class="mono">DI</div><h4>Deal Insert</h4><p>Logs a placement into the Deal Tracker sheet and verifies every cascaded calculation across all tabs.</p><span class="tag">Ops</span></div>
       <div class="tile"><div class="mono">GE</div><h4>Ghostwriter Eval</h4><p>Quality gate for written content. Checks any draft against my voice and the numi brand rules before it ships.</p><span class="tag teal">Quality gate</span></div>
       <div class="tile"><div class="mono">SE</div><h4>Search Quality Eval</h4><p>Quality gate for packs, longlists, shortlists and briefs. Confirms it meets the numi standard before a client sees it.</p><span class="tag teal">Quality gate</span></div>
+      <div class="tile"><div class="mono">MM</div><h4>Market Mapper</h4><p>Turns an activated brief into a tiered talent landscape, a company heat map and a client-ready longlist, with a diversity breadth check built in.</p><span class="tag teal">Search</span></div>
+      <div class="tile"><div class="mono">Sg</div><h4>Signals</h4><p>Scans the market for events that create mandates, funding rounds, exits, departures, and turns them into ranked BD moves with named decision makers.</p><span class="tag">BD</span></div>
+      <div class="tile"><div class="mono">AM</div><h4>Archive Miner</h4><p>Mines our Loxo archive so every search starts with people numi already knows: silver medalists, warm candidates and boomerangs, before sourcing cold.</p><span class="tag teal">Search</span></div>
+      <div class="tile"><div class="mono">CA</div><h4>Comp Advisor</h4><p>Builds defensible pay and equity benchmarks for executive roles. Sets the band at brief, tests expectations at shortlist, constructs the offer at close.</p><span class="tag teal">Search</span></div>
+      <div class="tile"><div class="mono">PP</div><h4>Post-Placement Care</h4><p>Owns everything after the offer is accepted: the pre-start bridge, the 30-60-90 plan, first-year check-ins and early warning when a placement wobbles.</p><span class="tag teal">Search</span></div>
+      <div class="tile"><div class="mono">Bn</div><h4>Brain Dump</h4><p>Turns a rambling voice dump into structured ideas, gives each a candid Pursue, Park or Bin verdict, and logs it to Notion so ideas compound.</p><span class="tag">Thinking</span></div>
+      <div class="tile"><div class="mono">St</div><h4>Step Back</h4><p>A deliberate hard stop that challenges my thinking before I commit, and calls an independent red team for big structural decisions.</p><span class="tag">Thinking</span></div>
     </div>
 
     <div class="callout builder">
       <div class="builder-flag"><span class="b"></span> Builder detail</div>
       <h3>The eval loop is the secret</h3>
-      <p>Two of the eleven are quality gates, not producers. Every piece of written or search output runs through an eval before it reaches me, scored against the voice and the numi standard. This is a reinforcement loop: when I give feedback, the rule gets written back into memory so the next draft is better. That is what keeps quality flat as volume grows.</p>
+      <p>Two of the eighteen are quality gates, not producers. Every piece of written or search output runs through an eval before it reaches me, scored against the voice and the numi standard. This is a reinforcement loop: when I give feedback, the rule gets written back into memory so the next draft is better. That is what keeps quality flat as volume grows.</p>
     </div>
   </section>
 
@@ -367,7 +407,7 @@ footer b{color:var(--mute);font-weight:500}
     <div class="callout builder">
       <div class="builder-flag"><span class="b"></span> Builder detail</div>
       <ul class="clean">
-        <li><b>Packs vs custom skills.</b> The thirteen packs are broad, installed expertise. My eleven numi skills are narrow and bespoke. The custom skills win when the job is a numi-specific workflow, the packs win when I need general depth.</li>
+        <li><b>Packs vs custom skills.</b> The thirteen packs are broad, installed expertise. My eighteen numi skills are narrow and bespoke. The custom skills win when the job is a numi-specific workflow, the packs win when I need general depth.</li>
         <li><b>Document builders too.</b> Alongside these, format skills produce polished Word docs, spreadsheets, presentations and PDFs, so a finished deliverable comes out the other end, not just text.</li>
         <li><b>Composable.</b> Skills stack. A single task can pull brand voice, a data pack and a document builder together in one run.</li>
       </ul>
@@ -477,6 +517,215 @@ footer b{color:var(--mute);font-weight:500}
     </div>
   </section>
 
+  <!-- GUIDE / GLOSSARY -->
+  <section class="panel" id="guide">
+    <h2 class="sec">Guide and glossary</h2>
+    <p class="sub">Plain-English answers to the questions people ask when they see this system on a call. What is the Conductor, what does the Analyst do, what is the difference between a skill and an agent. Start typing to jump to a term.</p>
+
+    <div class="gloss-search">
+      <span class="ic"></span>
+      <input id="glossSearch" type="text" placeholder="Search the glossary, e.g. Conductor, Analyst, eval" autocomplete="off" aria-label="Search the glossary">
+    </div>
+    <p class="gloss-count" id="glossCount"></p>
+
+    <div class="gloss-group-wrap">
+      <div class="gloss-group">The roles</div>
+
+      <div class="gloss" data-term="conductor orchestrator router routing traffic decides who">
+        <button class="gloss-q"><span class="gloss-t">The Conductor</span><span class="gloss-cat">Role · Orchestrator</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The Conductor is the routing brain of the system. It does not write or check the work itself, it decides who does. When a request lands, the Conductor reads it, loads the numi-core facts and the right context, works out whether the job belongs to a numi skill, a skill pack or an agent, and hands it to the owner. It also holds the running order, so a piece of content goes to the <b>Ghostwriter</b> to draft and then the <b>Reviewer</b> to check, in that sequence. In practice it is the CLAUDE.md routing file and the memory layer working together. It is the reason I never have to re-explain numi or point Claude at the right playbook, it already knows.</p></div>
+      </div>
+
+      <div class="gloss" data-term="ghostwriter writer drafts content producer voice posts">
+        <button class="gloss-q"><span class="gloss-t">The Ghostwriter</span><span class="gloss-cat">Role · Producer</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The Ghostwriter is the writer. It drafts in my voice, from LinkedIn posts and outreach to proposals and event copy, in the numi tone and under the hard rules. It is the highest-impact role, because most of what leaves numi is words. It never invents facts and never sends anything, it drafts and hands it to me. Behind it sit the writing skills (numi Writer, LinkedIn Content Creator, BD Outreach Sequencer) and the Ghostwriter Eval that scores every draft before I see it.</p></div>
+      </div>
+
+      <div class="gloss" data-term="reviewer quality gate truth fact check traceability sources verify">
+        <button class="gloss-q"><span class="gloss-t">The Reviewer</span><span class="gloss-cat">Role · Quality</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The Reviewer is the truth and quality gate. Before any client-facing document goes out, it checks every factual claim against a source, a title, a tenure, a date, a metric, a quote, and blocks the document if anything cannot be traced. It also scores search outputs against the numi standard and turns my corrections into standing rules, so the same mistake does not happen twice. The rule underneath it is simple: every claim traces to a source, or it does not ship. Truth is checked first, voice second.</p></div>
+      </div>
+
+      <div class="gloss" data-term="analyst thinking step back challenge red team assumptions pressure test">
+        <button class="gloss-q"><span class="gloss-t">The Analyst</span><span class="gloss-cat">Role · Thinking</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The Analyst buys me thinking time. Before we build something, it steps back, restates what we are actually doing and why, tests it against what numi is for, and challenges my assumptions the way a competitor trying to beat me would. For a big or expensive-to-reverse decision it brings in an independent <b>red team</b>, a fresh view whose only job is to argue the other side, because I am naturally biased toward the plan I am already on. This is the Step Back skill in action. It is the part of the system built to disagree with me, on purpose.</p></div>
+      </div>
+
+      <div class="gloss" data-term="anonymiser anonymizer guardrail confidential candidate client identity privacy">
+        <button class="gloss-q"><span class="gloss-t">The Anonymiser</span><span class="gloss-cat">Role · Guardrail</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The Anonymiser protects sensitive information. numi handles commercially confidential placement data, so before anything is shared or sent to an outside tool it strips client and candidate identity, using Candidate A and Client X in working drafts and keeping real names out of file names. It is the reason we can move fast with AI without leaking who is hiring or who is on the move.</p></div>
+      </div>
+
+      <div class="gloss" data-term="librarian maintenance sweep drift audit consistency weekly numbers">
+        <button class="gloss-q"><span class="gloss-t">The Librarian</span><span class="gloss-cat">Role · Maintenance</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The Librarian keeps the facts consistent. Once a week it runs a read-only sweep across every file and checks the credentials and numbers against the one canonical numi-core, then flags any drift. It cannot change anything, it only reports, so the master stays clean and the same figures show up everywhere. It is why the numbers on this page do not slowly go out of date across dozens of documents.</p></div>
+      </div>
+    </div>
+
+    <div class="gloss-group-wrap">
+      <div class="gloss-group">How it works, the building blocks</div>
+
+      <div class="gloss" data-term="skill playbook slash command workflow">
+        <button class="gloss-q"><span class="gloss-t">Skill</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>A skill is a saved playbook for one job. It triggers on a phrase or a slash command, loads a defined set of steps, and produces a defined output. My numi skills are bespoke, they encode how numi actually runs search, content and brand, so the result comes out in numi format and voice every time, not as a generic answer.</p></div>
+      </div>
+
+      <div class="gloss" data-term="skill pack plugin installed expertise function">
+        <button class="gloss-q"><span class="gloss-t">Skill pack (plugin)</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>A skill pack is an installed bundle of ready-made expertise for a whole business function, like Finance, Legal or Marketing. Where my numi skills are narrow and bespoke, the packs are broad and general. I reach for a pack when a task needs specialist depth I have not built myself.</p></div>
+      </div>
+
+      <div class="gloss" data-term="agent subagent red team worker role independent">
+        <button class="gloss-q"><span class="gloss-t">Agent and subagent</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>An agent is a worker with a defined role that can run a chunk of work on its own and report back. In numi terms the roles above, Conductor, Ghostwriter, Reviewer, Analyst, Anonymiser, Librarian, are agents. A subagent is a fresh, independent instance spun up for a specific job, like the red team the Analyst calls. It is valuable precisely because it does not share the main thread's assumptions, so it challenges rather than agrees.</p></div>
+      </div>
+
+      <div class="gloss" data-term="connector tool integration notion drive gmail slack mcp app">
+        <button class="gloss-q"><span class="gloss-t">Connector</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>A connector is a live link to an app we already use, Notion, Drive, Gmail, Slack, Xero and the rest. It lets Claude read and act where the data actually lives instead of copy-pasting. Reads are free, but sending, posting or deleting always needs my explicit yes.</p></div>
+      </div>
+
+      <div class="gloss" data-term="memory persistence facts across sessions knows me index">
+        <button class="gloss-q"><span class="gloss-t">Memory</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Memory is what makes the assistant know me across sessions. It is a set of small fact files, my biography, the team roster, the no em dash rule, the step back rule, project state, plus an index that loads at the start of every session. A new session does not start from scratch, it starts already knowing numi.</p></div>
+      </div>
+
+      <div class="gloss" data-term="claude.md routing table instruction project file">
+        <button class="gloss-q"><span class="gloss-t">CLAUDE.md</span><span class="gloss-cat">Concept · routing</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>CLAUDE.md is the project instruction file that acts as the routing table. It tells Claude which context to load and which skill or agent owns which job. It is the written brain behind the Conductor.</p></div>
+      </div>
+
+      <div class="gloss" data-term="numi-core source of truth credentials facts positioning master file">
+        <button class="gloss-q"><span class="gloss-t">numi-core.md</span><span class="gloss-cat">Concept · source of truth</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>numi-core.md is the single canonical file that holds the credentials, positioning, voice, hard rules and confidentiality policy. Everything downstream reads from it, which is why the numbers and the tone never drift. Change it once and the whole system inherits the change.</p></div>
+      </div>
+
+      <div class="gloss" data-term="eval quality check gate score standard ghostwriter search">
+        <button class="gloss-q"><span class="gloss-t">Eval</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>An eval is an automatic quality check that runs before work reaches me. Written content runs through the Ghostwriter Eval, search deliverables through the Search Quality Eval, and client documents through the Reviewer. Each scores the output against the numi standard and blocks anything that falls short.</p></div>
+      </div>
+
+      <div class="gloss" data-term="learning loop feedback rule reinforcement improve sharper">
+        <button class="gloss-q"><span class="gloss-t">Learning loop</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The learning loop is how the system gets sharper. Load confirmed rules, produce the work, run the quality gate, take my feedback, then write that feedback back into memory as a standing rule. Feedback does not evaporate at the end of a chat, it becomes part of how the next job is done. It is what keeps quality rising as volume grows.</p></div>
+      </div>
+
+      <div class="gloss" data-term="canonical root source of truth drive folder single home no forks placement">
+        <button class="gloss-q"><span class="gloss-t">Canonical root</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The canonical root is the one folder in my Drive that I own and that everything reads from. There is one master and no forks, the team works from a synced copy. A locked placement rule means new skills and files land in exactly one home, which is how we stopped duplicates and drift creeping back in.</p></div>
+      </div>
+
+      <div class="gloss" data-term="confidentiality anonymise sensitive data default candidate client">
+        <button class="gloss-q"><span class="gloss-t">Confidentiality by default</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Every working draft anonymises client and candidate detail unless I say otherwise. Real names stay out of file names, sensitive data is flagged before it touches any outside tool, and when in doubt it is treated as sensitive. The Anonymiser enforces this.</p></div>
+      </div>
+
+      <div class="gloss" data-term="human in the loop confirmation approval sign off never sends">
+        <button class="gloss-q"><span class="gloss-t">Human in the loop</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Nothing is sent, posted, logged or deleted without my explicit confirmation. The assistant drafts, checks and prepares, I approve. It is a hard rule that holds on every task, however routine it looks.</p></div>
+      </div>
+
+      <div class="gloss" data-term="hard rules non negotiable no em dash tldr confirmation direct">
+        <button class="gloss-q"><span class="gloss-t">Hard rules</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>A short set of non-negotiables that apply every session: no em dashes, lead with a TL;DR, never send or post or delete without my confirmation, step back and challenge my assumptions before structural work, and be direct, answer first. They hold regardless of the task.</p></div>
+      </div>
+
+      <div class="gloss" data-term="mcp model context protocol standard plumbing technical connectors">
+        <button class="gloss-q"><span class="gloss-t">MCP</span><span class="gloss-cat">Concept · technical</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>MCP, the Model Context Protocol, is the open standard that lets Claude talk to outside tools and data in a consistent way. Every connector on this page is an MCP connection under the hood. It is the plumbing that makes the tool layer possible.</p></div>
+      </div>
+
+      <div class="gloss" data-term="cowork claude desktop mode sandbox workspace technical">
+        <button class="gloss-q"><span class="gloss-t">Cowork</span><span class="gloss-cat">Concept · technical</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Cowork is the Claude desktop mode this system runs in. It gives Claude a working folder on my machine, a sandbox to run code, and the ability to install skills and packs. It is where the numi OS lives and does its work.</p></div>
+      </div>
+
+      <div class="gloss" data-term="numi way method search process brief placement franchise system">
+        <button class="gloss-q"><span class="gloss-t">The numi Way</span><span class="gloss-cat">Concept</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>The numi Way is our documented method for running a search end to end, from brief to placement to aftercare. The point of the OS is to encode the numi Way so quality does not depend on any one person remembering it. The direction of travel is a franchisable system, not a set of habits.</p></div>
+      </div>
+    </div>
+
+    <div class="gloss-group-wrap">
+      <div class="gloss-group">The eighteen numi skills, in one line</div>
+
+      <div class="gloss" data-term="numi writer audience adaptive email message founder investor cto candidate">
+        <button class="gloss-q"><span class="gloss-t">numi Writer</span><span class="gloss-cat">Content</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Audience-adaptive writing for any numi communication. Adapts one message for a founder, an investor, a CTO or a candidate.</p></div>
+      </div>
+      <div class="gloss" data-term="linkedin content creator post voice numicon numi talks">
+        <button class="gloss-q"><span class="gloss-t">LinkedIn Content Creator</span><span class="gloss-cat">Content</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Turns a raw idea, a win, a numicon moment or a numi Talks episode into a post in my exact voice.</p></div>
+      </div>
+      <div class="gloss" data-term="bd outreach sequencer multi touch founders investors leaders">
+        <button class="gloss-q"><span class="gloss-t">BD Outreach Sequencer</span><span class="gloss-cat">Content</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Multi-touch outreach sequences for founders, investors and leaders, personalised and in my voice.</p></div>
+      </div>
+      <div class="gloss" data-term="brand design visuals carousels decks social creative system">
+        <button class="gloss-q"><span class="gloss-t">Brand Design</span><span class="gloss-cat">Brand</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Produces on-brand numi visuals, carousels, decks and social creative under the numi Creative System.</p></div>
+      </div>
+      <div class="gloss" data-term="search brief processor rough notes email call kit activate">
+        <button class="gloss-q"><span class="gloss-t">Search Brief Processor</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Converts rough notes, an email or a call into a complete numi search kit ready to activate.</p></div>
+      </div>
+      <div class="gloss" data-term="candidate pack generator notion cv profile shortlist client ready">
+        <button class="gloss-q"><span class="gloss-t">Candidate Pack Generator</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Builds a polished, client-ready candidate pack in Notion format from a CV, profile or call notes.</p></div>
+      </div>
+      <div class="gloss" data-term="weekly pipeline report monday view bd movement red flags">
+        <button class="gloss-q"><span class="gloss-t">Weekly Pipeline Report</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Structured Monday view of active searches, BD pipeline, candidate movement, red flags and the week ahead.</p></div>
+      </div>
+      <div class="gloss" data-term="meeting prep follow up brief commitments records">
+        <button class="gloss-q"><span class="gloss-t">Meeting Prep and Follow-up</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Briefs me before a meeting and extracts commitments, drafts the follow-up and updates records after.</p></div>
+      </div>
+      <div class="gloss" data-term="deal insert placement tracker sheet calculations tabs">
+        <button class="gloss-q"><span class="gloss-t">Deal Insert</span><span class="gloss-cat">Ops</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Logs a placement into the Deal Tracker sheet and verifies every cascaded calculation across all tabs.</p></div>
+      </div>
+      <div class="gloss" data-term="ghostwriter eval quality gate written voice brand rules">
+        <button class="gloss-q"><span class="gloss-t">Ghostwriter Eval</span><span class="gloss-cat">Quality gate</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Quality gate for written content. Checks any draft against my voice and the numi brand rules before it ships.</p></div>
+      </div>
+      <div class="gloss" data-term="search quality eval packs longlists shortlists briefs standard">
+        <button class="gloss-q"><span class="gloss-t">Search Quality Eval</span><span class="gloss-cat">Quality gate</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Quality gate for packs, longlists, shortlists and briefs. Confirms it meets the numi standard before a client sees it.</p></div>
+      </div>
+      <div class="gloss" data-term="market mapper talent landscape heat map longlist diversity tiered">
+        <button class="gloss-q"><span class="gloss-t">Market Mapper</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Turns an activated brief into a tiered talent landscape, a company heat map and a client-ready longlist, with a diversity breadth check built in.</p></div>
+      </div>
+      <div class="gloss" data-term="signals bd triggers funding rounds departures exits mandates market intel">
+        <button class="gloss-q"><span class="gloss-t">Signals</span><span class="gloss-cat">BD</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Scans the market for events that create search mandates, funding rounds, exits, executive departures, PE deals, and turns them into a ranked list of BD moves with named decision makers and timing.</p></div>
+      </div>
+      <div class="gloss" data-term="archive miner loxo silver medalists warm candidates boomerang past">
+        <button class="gloss-q"><span class="gloss-t">Archive Miner</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Mines our Loxo archive so every search starts with people numi already knows: silver medalists, warm prior candidates and boomerangs, before we ever source cold.</p></div>
+      </div>
+      <div class="gloss" data-term="comp advisor pay equity benchmark band offer expectations">
+        <button class="gloss-q"><span class="gloss-t">Comp Advisor</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Builds defensible pay and equity benchmarks for executive roles. Sets the band at brief stage, tests candidate expectations at shortlist, and constructs the offer at close.</p></div>
+      </div>
+      <div class="gloss" data-term="post placement care 30 60 90 onboarding retention check in aftercare wobble">
+        <button class="gloss-q"><span class="gloss-t">Post-Placement Care</span><span class="gloss-cat">Search</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Owns everything after the offer is accepted: the pre-start bridge, the 30-60-90 plan, first-year check-ins and early warning when a placement wobbles. Where the retention rate is defended.</p></div>
+      </div>
+      <div class="gloss" data-term="brain dump ramble wispr flow ideas verdict pursue park bin notion capture">
+        <button class="gloss-q"><span class="gloss-t">Brain Dump</span><span class="gloss-cat">Thinking</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>Turns a rambling voice brain dump into structured ideas, gives each a candid Pursue, Park or Bin verdict, and logs it to a Notion database so ideas compound instead of evaporating.</p></div>
+      </div>
+      <div class="gloss" data-term="step back challenge red team think differently decision analyst">
+        <button class="gloss-q"><span class="gloss-t">Step Back</span><span class="gloss-cat">Thinking</span><span class="gloss-x">+</span></button>
+        <div class="gloss-a"><p>A deliberate hard stop that challenges my thinking before I commit, and escalates to an independent red team for big structural calls. This is the Analyst role in action.</p></div>
+      </div>
+    </div>
+
+    <p class="gloss-none" id="glossNone">No matches. Try another term, for example Conductor, eval, or Comp Advisor.</p>
+  </section>
+
 </main>
 
 <footer>
@@ -495,6 +744,37 @@ footer b{color:var(--mute);font-weight:500}
       window.scrollTo({top:0,behavior:'smooth'});
     });
   });
+
+  // Glossary: accordion toggle
+  document.querySelectorAll('.gloss-q').forEach(b=>{
+    b.addEventListener('click',()=>b.parentElement.classList.toggle('open'));
+  });
+
+  // Glossary: live search
+  const gs = document.getElementById('glossSearch');
+  const gItems = Array.from(document.querySelectorAll('.gloss'));
+  const gGroups = Array.from(document.querySelectorAll('.gloss-group-wrap'));
+  const gNone = document.getElementById('glossNone');
+  const gCount = document.getElementById('glossCount');
+  const setCount = n => { if(gCount) gCount.textContent = n + (n===1?' term':' terms'); };
+  setCount(gItems.length);
+  if(gs){
+    gs.addEventListener('input',()=>{
+      const q = gs.value.trim().toLowerCase();
+      let visible = 0;
+      gItems.forEach(it=>{
+        const hay = (it.dataset.term + ' ' + it.textContent).toLowerCase();
+        const match = !q || hay.includes(q);
+        it.classList.toggle('gloss-hide', !match);
+        if(match) visible++;
+      });
+      gGroups.forEach(g=>{
+        g.classList.toggle('gloss-hide', !g.querySelector('.gloss:not(.gloss-hide)'));
+      });
+      if(gNone) gNone.style.display = visible ? 'none' : 'block';
+      setCount(visible);
+    });
+  }
 </script>
 </body>
 </html>
